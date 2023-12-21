@@ -25,16 +25,24 @@ const Body=()=>{
   //   rating: "4.5",
   //   Price:"$10"
   // },]
+
   const[listofHotel,setlistHotel]=useState([]);
-  useEffect(()=>{
-    fetchData();
-  },[]);
   const fetchData=async()=>{
-    const data= await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.1702401&lng=72.83106070000001&page_type=DESKTOP_WEB_LISTING");
+    const data= await fetch("http://www.swiggy.com/dapi/restaurants/list/v5?lat=21.1702401&lng=72.83106070000001&page_type=DESKTOP_WEB_LISTING");
     const json=await data.json();
+    
     console.log(json);
      setlistHotel(json.data.cards[2].data.data.cards);
   };
+  useEffect(()=>{
+    fetchData();
+  },[]);
+  // const fetchData=async()=>{
+  //   const data= await fetch("http://www.swiggy.com/dapi/restaurants/list/v5?lat=21.1702401&lng=72.83106070000001&page_type=DESKTOP_WEB_LISTING");
+  //   const json=await data.json();
+  //   console.log(json);
+  //    setlistHotel(json.data.cards[2].data.data.cards);
+  // };
   // if(listofHotel.length===0)
   // {
   //   return <shimmer/>
