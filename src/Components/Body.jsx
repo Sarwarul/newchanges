@@ -28,21 +28,23 @@ const Body=()=>{
 
   const[listofHotel,setlistHotel]=useState([]);
   const fetchData=async()=>{
-    const data= await fetch("http://www.swiggy.com/dapi/restaurants/list/v5?lat=21.1702401&lng=72.83106070000001&page_type=DESKTOP_WEB_LISTING");
+    const data= await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
     const json=await data.json();
+    setlistHotel(json.data.cards[2].data.data.cards);
     
-    console.log(json);
-     setlistHotel(json.data.cards[2].data.data.cards);
+    
+    //
+    //  setlistHotel(json?.data?.cards[2]?.data?.data?.cards);
   };
   useEffect(()=>{
     fetchData();
   },[]);
-  // const fetchData=async()=>{
-  //   const data= await fetch("http://www.swiggy.com/dapi/restaurants/list/v5?lat=21.1702401&lng=72.83106070000001&page_type=DESKTOP_WEB_LISTING");
+  //  const fetchData=async()=>{
+  //   const data= await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
   //   const json=await data.json();
-  //   console.log(json);
-  //    setlistHotel(json.data.cards[2].data.data.cards);
-  // };
+  //   setlistHotel(json.data.cards[2].data.data.cards);
+    
+  
   // if(listofHotel.length===0)
   // {
   //   return <shimmer/>
@@ -51,8 +53,8 @@ const Body=()=>{
    return(
      <div className="Body">
         <div className="filter">
-        <button className="filter-btn" onClick={()=>{const  filterlist=listofHotel.filter(
-          (item)=>item.rating>4);
+        <button className="filter-btn" onClick={()=>{const  filterlist=listofHotel?.filter(
+          (item)=>item?.rating>4);
           setlistHotel(filterlist);
         }}
         >
@@ -60,7 +62,7 @@ const Body=()=>{
           </button>
         </div>
         <div className="res-container">
-       {listofHotel?.map((res)=>(<Rescard key={res.id} resObj={res}/>))}
+       {listofHotel?.map((res)=>(<Rescard key={res?.id} resObj={res}/>))}
         
            
         </div>
